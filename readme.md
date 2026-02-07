@@ -1,5 +1,14 @@
 # Zentinel - Trading System Project Structure
 
+> **⚠️ PROJECT IN DEVELOPMENT - PRIVATE REPOSITORY**
+> 
+> This project is currently under active development and the main repository is **private**.
+> This public documentation has been created exclusively to **showcase the development progress log** 
+> and share the advancement of the Zentinel algorithmic trading system.
+> 
+> **Status**: In Development  
+> **Last Updated**: February 2026
+
 ## Overview
 Zentinel is a comprehensive algorithmic trading system designed for systematic trading strategy development, backtesting, and automated execution.
 
@@ -52,7 +61,7 @@ zentinel/
 **Purpose**: Generates technical indicators and derived features for strategy development.
 
 **Key Features**:
-- Technical indicators (MA, RSI, MACD, Bollinger Bands, etc.)
+- Technical indicators (MA, MACD, RSI, MFI, etc.)
 - Custom indicator creation framework
 - Feature scaling and normalization
 - Lag features and rolling statistics
@@ -81,7 +90,6 @@ zentinel/
 - Trend following
 - Mean reversion
 - Momentum strategies
-- Statistical arbitrage
 - Multi-strategy combinations
 
 **Key Features**:
@@ -100,7 +108,7 @@ zentinel/
 - Transaction cost modeling
 - Slippage simulation
 - Walk-forward analysis
-- Monte Carlo simulations
+- Montecarlo simulations
 - Performance metrics calculation
 
 **Metrics**:
@@ -342,5 +350,4 @@ MIT License - see LICENSE file for details
 
 ## Contact
 
-Project Maintainer: [Your Name]
-Email: [your-email@example.com]
+Project Maintainer: Vic R.
