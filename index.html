@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,87 +7,136 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --black:   #000000;
-      --dark:    #0d0d0d;
+    /* ── DARK theme (default) ── */
+    [data-theme="light"] {
+      --bg:      #000000;
+      --bg-alt:  #0d0d0d;
       --card:    #141414;
       --border:  #222222;
+      --text:    #ffffff;
+      --text2:   #a0a0a0;
+      --text3:   #888888;
+      --muted:   #555555;
+      --chip-bg: #1e1e1e;
+      --chip-c:  #cccccc;
+      --tag-bg:  #2a2a2a;
+      --tag-c:   #bbbbbb;
+      --node-bg-live:    rgba(0,200,5,.08);
+      --node-bd-live:    rgba(0,200,5,.3);
+      --node-bg-pend:    rgba(245,158,11,.07);
+      --node-bd-pend:    rgba(245,158,11,.25);
+      --node-title:      #ffffff;
+      --node-sub:        #aaaaaa;
+      --conn-label-bg:   #000000;
+      --conn-label-c:    rgba(0,200,5,.6);
+      --conn-label-cp:   rgba(245,158,11,.5);
+      --metric-num:      #ffffff;
+      --logo-filter:     brightness(0) invert(1);
+    }
+
+    /* ── LIGHT theme ── */
+    [data-theme="light"] {
+      --bg:      #ffffff;
+      --bg-alt:  #f5f5f5;
+      --card:    #f0f0f0;
+      --border:  #e0e0e0;
+      --text:    #000000;
+      --text2:   #444444;
+      --text3:   #666666;
+      --muted:   #888888;
+      --chip-bg: #e8e8e8;
+      --chip-c:  #333333;
+      --tag-bg:  #e0e0e0;
+      --tag-c:   #333333;
+      --node-bg-live:    rgba(0,160,5,.08);
+      --node-bd-live:    rgba(0,160,5,.35);
+      --node-bg-pend:    rgba(200,130,0,.08);
+      --node-bd-pend:    rgba(200,130,0,.3);
+      --node-title:      #111111;
+      --node-sub:        #666666;
+      --conn-label-bg:   #f5f5f5;
+      --conn-label-c:    rgba(0,140,5,.7);
+      --conn-label-cp:   rgba(180,110,0,.6);
+      --metric-num:      #000000;
+      --logo-filter:     none;
+    }
+
+    :root {
       --green:   #00c805;
-      --green2:  #00e506;
       --amber:   #f5a623;
       --indigo:  #7c5cfc;
-      --white:   #ffffff;
-      --gray1:   #a0a0a0;
-      --gray2:   #555555;
-      --gray3:   #2a2a2a;
       --f:       'Manrope', sans-serif;
     }
- 
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--black); color: var(--white); font-family: var(--f); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
- 
+    body { background: var(--bg); color: var(--text); font-family: var(--f); -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background .3s, color .3s; }
+
     .wrap { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
- 
-    /* ─── HEADER ─────────────────────────────────── */
-    header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(0,0,0,.92); backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
+
+    /* ─── HEADER ── */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: background .3s, border-color .3s; }
     .hdr { max-width: 1120px; margin: 0 auto; padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .logo img { width: 30px; height: 30px; object-fit: contain; filter: brightness(0) invert(1); }
-    .logo-n { font-size: 16px; font-weight: 700; letter-spacing: 1.5px; color: var(--white); }
-    .hdr-right { display: flex; align-items: center; gap: 20px; }
-    .hdr-pill { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 500; color: var(--gray1); }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img { width: 32px; height: 32px; object-fit: contain; filter: var(--logo-filter); transition: filter .3s; }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-n { font-size: 16px; font-weight: 700; letter-spacing: 1.5px; color: var(--text); line-height: 1; }
+    .logo-sub { font-size: 9px; font-weight: 500; letter-spacing: 1.5px; color: var(--muted); margin-top: 3px; }
+    .hdr-right { display: flex; align-items: center; gap: 16px; }
+    .hdr-pill { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 500; color: var(--text2); }
     .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; animation: blink 2s ease-in-out infinite; }
     .dot.g { background: var(--green); box-shadow: 0 0 8px var(--green); }
     .dot.a { background: var(--amber); box-shadow: 0 0 7px var(--amber); animation-duration: 2.5s; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
-    .utc { font-size: 12px; font-weight: 500; color: var(--gray2); font-variant-numeric: tabular-nums; letter-spacing: .5px; }
- 
-    /* ─── HERO ────────────────────────────────────── */
+    .utc { font-size: 12px; font-weight: 500; color: var(--muted); font-variant-numeric: tabular-nums; letter-spacing: .5px; }
+
+    /* ─── TOGGLE BUTTONS ── */
+    .hdr-controls { display: flex; align-items: center; gap: 8px; }
+    .ctrl-btn { display: flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 100px; border: 1px solid var(--border); background: var(--card); color: var(--text2); font-family: var(--f); font-size: 11px; font-weight: 600; cursor: pointer; transition: all .2s; letter-spacing: .5px; }
+    .ctrl-btn:hover { border-color: var(--green); color: var(--green); }
+    .ctrl-btn svg { width: 13px; height: 13px; }
+
+    /* ─── HERO ── */
     .hero { padding: 148px 0 100px; }
     .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,200,5,.1); border: 1px solid rgba(0,200,5,.25); border-radius: 100px; padding: 5px 14px; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; color: var(--green); margin-bottom: 36px; }
     .hero-tag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: blink 2s ease-in-out infinite; }
-    .hero-h { font-size: clamp(52px, 7vw, 96px); font-weight: 800; line-height: .95; letter-spacing: -2.5px; margin-bottom: 28px; }
+    .hero-h { font-size: clamp(52px, 7vw, 96px); font-weight: 800; line-height: .95; letter-spacing: -2.5px; margin-bottom: 28px; color: var(--text); }
     .hero-h .line2 { color: var(--green); display: block; }
-    .hero-h .line3 { color: var(--gray1); font-weight: 300; display: block; }
-    .hero-p { font-size: 17px; font-weight: 400; color: var(--gray1); line-height: 1.75; max-width: 520px; margin-bottom: 44px; }
+    .hero-h .line3 { color: var(--text2); font-weight: 300; display: block; }
+    .hero-p { font-size: 17px; font-weight: 400; color: var(--text2); line-height: 1.75; max-width: 520px; margin-bottom: 44px; }
     .hero-chips { display: flex; gap: 10px; flex-wrap: wrap; }
-    .chip { font-size: 12px; font-weight: 600; padding: 8px 18px; border-radius: 100px; border: 1px solid var(--border); color: var(--gray2); background: var(--card); letter-spacing: .5px; }
-    .chip.live { background: rgba(0,200,5,.1); border-color: rgba(0,200,5,.3); color: var(--green); }
- 
-    /* ─── METRICS ─────────────────────────────────── */
-    .metrics { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--dark); }
+    .chip { font-size: 12px; font-weight: 600; padding: 8px 18px; border-radius: 100px; border: 1px solid var(--border); color: var(--chip-c); background: var(--chip-bg); letter-spacing: .5px; }
+    .chip.live { background: rgba(0,200,5,.12); border-color: rgba(0,200,5,.35); color: var(--green); }
+
+    /* ─── METRICS ── */
+    .metrics { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-alt); transition: background .3s; }
     .metrics-grid { display: grid; grid-template-columns: repeat(4,1fr); }
     .metric { padding: 36px 40px; border-right: 1px solid var(--border); }
     .metric:last-child { border-right: none; }
-    .metric-n { font-size: 44px; font-weight: 800; letter-spacing: -2px; color: var(--white); line-height: 1; margin-bottom: 6px; }
-    .metric-l { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; color: var(--gray2); text-transform: uppercase; }
- 
-    /* ─── SECTIONS ────────────────────────────────── */
+    .metric-n { font-size: 44px; font-weight: 800; letter-spacing: -2px; color: var(--metric-num); line-height: 1; margin-bottom: 6px; }
+    .metric-l { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase; }
+
+    /* ─── SECTIONS ── */
     .section { padding: 100px 0; }
     .section + .section { border-top: 1px solid var(--border); }
-    .section.alt { background: var(--dark); }
+    .section.alt { background: var(--bg-alt); transition: background .3s; }
     .s-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--green); text-transform: uppercase; margin-bottom: 12px; }
-    .s-title { font-size: clamp(28px, 3vw, 42px); font-weight: 800; letter-spacing: -1px; color: var(--white); margin-bottom: 48px; line-height: 1.1; }
- 
-    /* ─── ASSETS ──────────────────────────────────── */
+    .s-title { font-size: clamp(28px, 3vw, 42px); font-weight: 800; letter-spacing: -1px; color: var(--text); margin-bottom: 48px; line-height: 1.1; }
+
+    /* ─── ASSETS ── */
     .assets-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
     .asset { background: var(--card); padding: 40px; transition: background .2s; }
-    .asset:hover { background: #1a1a1a; }
+    .asset:hover { filter: brightness(1.05); }
     .asset-ico { font-size: 28px; margin-bottom: 24px; }
-    .asset-n { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 10px; letter-spacing: -.5px; }
-    .asset-d { font-size: 14px; font-weight: 400; color: var(--gray1); line-height: 1.75; margin-bottom: 24px; }
+    .asset-n { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 10px; letter-spacing: -.5px; }
+    .asset-d { font-size: 14px; font-weight: 400; color: var(--text2); line-height: 1.75; margin-bottom: 24px; }
     .tags { display: flex; gap: 6px; flex-wrap: wrap; }
-    .tag { font-size: 10px; font-weight: 600; letter-spacing: .5px; padding: 3px 10px; background: var(--gray3); color: var(--gray1); border-radius: 4px; }
- 
-    /* ─── BROKERS ─────────────────────────────────── */
+    .tag { font-size: 10px; font-weight: 600; letter-spacing: .5px; padding: 3px 10px; background: var(--tag-bg); color: var(--tag-c); border-radius: 4px; }
+
+    /* ─── BROKERS ── */
     .broker-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
     .broker { background: var(--card); padding: 40px; position: relative; overflow: hidden; transition: background .2s; }
-    .broker:hover { background: #1a1a1a; }
+    .broker:hover { filter: brightness(1.05); }
     .broker::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
     .broker.live::after    { background: var(--green); }
     .broker.pending::after { background: var(--amber); }
@@ -96,210 +145,301 @@
     .b-status.live    { color: var(--green); }
     .b-status.pending { color: var(--amber); }
     .b-status.active  { color: var(--indigo); }
-    .b-name { font-size: 22px; font-weight: 800; color: var(--white); letter-spacing: -.5px; margin-bottom: 4px; }
-    .b-desc { font-size: 11px; font-weight: 500; color: var(--gray2); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 32px; }
+    .b-name { font-size: 22px; font-weight: 800; color: var(--text); letter-spacing: -.5px; margin-bottom: 4px; }
+    .b-desc { font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 32px; }
     .b-table { display: flex; flex-direction: column; }
     .b-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
     .b-row:last-child { border-bottom: none; }
-    .b-k { color: var(--gray2); font-weight: 500; }
-    .b-v { font-weight: 600; font-size: 12px; }
+    .b-k { color: var(--muted); font-weight: 500; }
+    .b-v { font-weight: 600; font-size: 12px; color: var(--text2); }
     .b-v.live    { color: var(--green); }
     .b-v.amber   { color: var(--amber); }
     .b-v.indigo  { color: var(--indigo); }
-    .b-v.gray    { color: var(--gray1); }
- 
-    /* ─── ARCH ─────────────────────────────────────── */
+
+    /* ─── ARCHITECTURE ── */
     .arch { display: flex; flex-direction: column; gap: 12px; }
-    .arch-flow { display: flex; align-items: center; justify-content: center; gap: 0; }
-    .anode { flex-shrink: 0; width: 152px; border-radius: 10px; padding: 16px 0; text-align: center; position: relative; }
-    .anode.live    { background: rgba(0,200,5,.08); border: 1px solid rgba(0,200,5,.25); }
-    .anode.pending { background: rgba(245,158,11,.06); border: 1px solid rgba(245,158,11,.2); opacity: .6; }
+    .arch-flow { display: flex; align-items: center; justify-content: center; }
+    .anode { flex-shrink: 0; width: 152px; border-radius: 10px; padding: 16px 0; text-align: center; position: relative; transition: background .3s, border-color .3s; }
+    .anode.live    { background: var(--node-bg-live); border: 1px solid var(--node-bd-live); }
+    .anode.pending { background: var(--node-bg-pend); border: 1px solid var(--node-bd-pend); opacity: .65; }
     .anode .adot { position: absolute; top: 9px; right: 9px; width: 6px; height: 6px; border-radius: 50%; animation: blink 2s ease-in-out infinite; }
     .anode.live .adot    { background: var(--green); box-shadow: 0 0 6px var(--green); }
     .anode.pending .adot { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
-    .anode .at { font-size: 12px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
-    .anode .as { font-size: 10px; font-weight: 500; color: var(--gray2); }
+    .anode .at { font-size: 12px; font-weight: 700; color: var(--node-title); margin-bottom: 3px; }
+    .anode .as { font-size: 10px; font-weight: 500; color: var(--node-sub); }
     .aconn { flex-shrink: 0; width: 60px; position: relative; display: flex; align-items: center; justify-content: center; }
     .aconn::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; transform: translateY(-50%); }
-    .aconn.live::before    { background: rgba(0,200,5,.2); }
-    .aconn.pending::before { background: rgba(245,158,11,.15); }
-    .aconn span { position: relative; z-index: 1; background: var(--black); padding: 0 5px; font-size: 9px; font-weight: 600; letter-spacing: .5px; }
-    .aconn.live span    { color: rgba(0,200,5,.5); }
-    .aconn.pending span { color: rgba(245,158,11,.4); }
-    .arch-flow.row2 .anode:first-child,
-    .arch-flow.row2 .aconn:first-of-type { opacity: .2; }
- 
-    /* ─── FOOTER ──────────────────────────────────── */
+    .aconn.live::before    { background: rgba(0,200,5,.25); }
+    .aconn.pending::before { background: rgba(245,158,11,.2); }
+    .aconn span { position: relative; z-index: 1; background: var(--conn-label-bg); padding: 0 5px; font-size: 9px; font-weight: 600; letter-spacing: .5px; transition: background .3s; }
+    .aconn.live span    { color: var(--conn-label-c); }
+    .aconn.pending span { color: var(--conn-label-cp); }
+
+    /* ─── FOOTER ── */
     footer { border-top: 1px solid var(--border); padding: 28px 0; }
     .ftr { max-width: 1120px; margin: 0 auto; padding: 0 48px; display: flex; justify-content: space-between; align-items: center; }
-    .ftr-l, .ftr-r { font-size: 12px; font-weight: 500; color: var(--gray2); }
- 
+    .ftr-l { font-size: 12px; font-weight: 500; color: var(--muted); }
+
     ::-webkit-scrollbar { width: 3px; }
-    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border); }
- 
+
     @media (max-width: 900px) {
       .wrap, .hdr, .ftr { padding: 0 20px; }
       .metrics-grid, .assets-row, .broker-row { grid-template-columns: 1fr; }
       .metric { border-right: none; border-bottom: 1px solid var(--border); }
       .hdr-right .hdr-pill { display: none; }
       .ftr { flex-direction: column; gap: 8px; text-align: center; }
+      .arch-flow { overflow-x: auto; justify-content: flex-start; padding-bottom: 8px; }
     }
   </style>
 </head>
 <body>
- 
+
 <!-- HEADER -->
 <header>
   <div class="hdr">
     <div class="logo">
-      <img src="data:image/png;base64,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" alt="Zentinel">
-      <span class="logo-n">ZENTINEL</span>
+      <div class="logo-text">
+        <span class="logo-n">ZENTINEL</span>
+        <span class="logo-sub" data-i18n="logo_sub">AI-powered trading agent</span>
+      </div>
     </div>
     <div class="hdr-right">
-      <div class="hdr-pill"><span class="dot g"></span>Main Broker</div>
-      <div class="hdr-pill"><span class="dot a"></span>Backup Broker</div>
+      <div class="hdr-pill"><span class="dot g"></span><span data-i18n="main_broker">Main Broker</span></div>
+      <div class="hdr-pill"><span class="dot a"></span><span data-i18n="backup_broker">Backup Broker</span></div>
       <div class="utc" id="clock">--:--:-- UTC</div>
+      <div class="hdr-controls">
+        <!-- Language toggle -->
+        <button class="ctrl-btn" onclick="toggleLang()" id="lang-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/></svg>
+          <span id="lang-label">ES</span>
+        </button>
+        <!-- Theme toggle -->
+        <button class="ctrl-btn" onclick="toggleTheme()" id="theme-btn">
+          <svg id="icon-dark" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg id="icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </header>
- 
+
 <!-- HERO -->
 <div class="hero">
   <div class="wrap">
-    <div class="hero-tag">LIVE TRADING SYSTEM</div>
+    <div class="hero-tag" data-i18n="hero_tag">LIVE TRADING SYSTEM</div>
     <h1 class="hero-h">
-      Systematic
-      <span class="line2">alpha generation</span>
-      <span class="line3">at machine speed.</span>
+      <span data-i18n="hero_line1">Systematic</span>
+      <span class="line2" data-i18n="hero_line2">alpha generation</span>
+      <span class="line3" data-i18n="hero_line3">at machine speed.</span>
     </h1>
-    <p class="hero-p">Fully autonomous, multi-broker trading infrastructure. Real-time signal ingestion and sub-second order execution — designed to operate continuously, without human intervention.</p>
+    <p class="hero-p" data-i18n="hero_p">Fully autonomous, multi-broker trading infrastructure. Real-time signal ingestion and sub-second order execution — designed to operate continuously, without human intervention.</p>
     <div class="hero-chips">
-      <span class="chip">Multi-Broker</span>
-      <span class="chip">24/7 Execution</span>
-      <span class="chip">100% Systematic</span>
+      <span class="chip live" data-i18n="chip_live">● Live Now</span>
+      <span class="chip" data-i18n="chip_multi">Multi-Broker</span>
+      <span class="chip" data-i18n="chip_247">24/7 Execution</span>
+      <span class="chip" data-i18n="chip_sys">100% Systematic</span>
     </div>
   </div>
 </div>
- 
+
 <!-- METRICS -->
 <div class="metrics">
   <div class="wrap">
     <div class="metrics-grid">
-      <div class="metric"><div class="metric-n">2</div><div class="metric-l">Brokers Connected</div></div>
-      <div class="metric"><div class="metric-n">24/7</div><div class="metric-l">Autonomous Execution</div></div>
-      <div class="metric"><div class="metric-n">&lt;1s</div><div class="metric-l">Order Latency</div></div>
-      <div class="metric"><div class="metric-n">100%</div><div class="metric-l">Systematic</div></div>
+      <div class="metric"><div class="metric-n">2</div><div class="metric-l" data-i18n="m1">Brokers Connected</div></div>
+      <div class="metric"><div class="metric-n">24/7</div><div class="metric-l" data-i18n="m2">Autonomous Execution</div></div>
+      <div class="metric"><div class="metric-n">&lt;1s</div><div class="metric-l" data-i18n="m3">Order Latency</div></div>
+      <div class="metric"><div class="metric-n">100%</div><div class="metric-l" data-i18n="m4">Systematic</div></div>
     </div>
   </div>
 </div>
- 
+
 <!-- ASSETS -->
 <div class="section alt">
   <div class="wrap">
-    <div class="s-eyebrow">Asset Classes</div>
-    <div class="s-title">What we trade</div>
+    <div class="s-eyebrow" data-i18n="assets_eyebrow">Asset Classes</div>
+    <div class="s-title" data-i18n="assets_title">What we trade</div>
     <div class="assets-row">
       <div class="asset">
         <div class="asset-ico">📈</div>
-        <div class="asset-n">Stocks</div>
-        <div class="asset-d">Individual equities on major US exchanges. Systematic long and short strategies driven by quantitative signals.</div>
-        <div class="tags"><span class="tag">NYSE</span><span class="tag">NASDAQ</span></div>
+        <div class="asset-n" data-i18n="a1_name">Stocks</div>
+        <div class="asset-d" data-i18n="a1_desc">Individual equities on major US exchanges. Systematic long and short strategies driven by quantitative signals.</div>
+        <div class="tags"><span class="tag">NYSE</span><span class="tag">NASDAQ</span><span class="tag">S&amp;P 500</span></div>
       </div>
       <div class="asset">
         <div class="asset-ico">🗂️</div>
-        <div class="asset-n">ETFs</div>
-        <div class="asset-d">Exchange-traded funds providing broad market and sector-specific exposure with institutional-grade liquidity.</div>
+        <div class="asset-n" data-i18n="a2_name">ETFs</div>
+        <div class="asset-d" data-i18n="a2_desc">Exchange-traded funds providing broad market and sector-specific exposure with institutional-grade liquidity.</div>
         <div class="tags"><span class="tag">CORE</span><span class="tag">SECTOR</span><span class="tag">THEMATIC</span></div>
       </div>
       <div class="asset">
         <div class="asset-ico">₿</div>
-        <div class="asset-n">Crypto</div>
-        <div class="asset-d">Digital assets operating around the clock. Automated strategies capitalizing on continuous market opportunities.</div>
+        <div class="asset-n" data-i18n="a3_name">Crypto</div>
+        <div class="asset-d" data-i18n="a3_desc">Digital assets operating around the clock. Automated strategies capitalizing on continuous market opportunities.</div>
         <div class="tags"><span class="tag">BTC</span><span class="tag">ETH</span><span class="tag">XRP</span></div>
       </div>
     </div>
   </div>
 </div>
- 
+
 <!-- BROKERS -->
 <div class="section">
   <div class="wrap">
-    <div class="s-eyebrow">Infrastructure</div>
-    <div class="s-title">Broker connections</div>
+    <div class="s-eyebrow" data-i18n="brokers_eyebrow">Infrastructure</div>
+    <div class="s-title" data-i18n="brokers_title">Broker connections</div>
     <div class="broker-row">
       <div class="broker live">
-        <div class="b-status live"><span class="dot g"></span>CONNECTED</div>
-        <div class="b-name">Main Broker</div>
-        <div class="b-desc">Primary Execution Venue</div>
+        <div class="b-status live"><span class="dot g"></span><span data-i18n="b1_status">CONNECTED</span></div>
+        <div class="b-name" data-i18n="b1_name">Main Broker</div>
+        <div class="b-desc" data-i18n="b1_desc">Primary Execution Venue</div>
         <div class="b-table">
-          <div class="b-row"><span class="b-k">Status</span><span class="b-v live">Live</span></div>
-          <div class="b-row"><span class="b-k">Mode</span><span class="b-v gray">Live Trading</span></div>
-          <div class="b-row"><span class="b-k">Protocol</span><span class="b-v gray">Native API / TCP</span></div>
+          <div class="b-row"><span class="b-k" data-i18n="b_status">Status</span><span class="b-v live" data-i18n="b1_sv">Live</span></div>
+          <div class="b-row"><span class="b-k" data-i18n="b_mode">Mode</span><span class="b-v" data-i18n="b_live_trading">Live Trading</span></div>
+          <div class="b-row"><span class="b-k" data-i18n="b_protocol">Protocol</span><span class="b-v">Native API / TCP</span></div>
         </div>
       </div>
       <div class="broker pending">
-        <div class="b-status pending"><span class="dot a"></span>PENDING</div>
-        <div class="b-name">Backup Broker</div>
-        <div class="b-desc">Secondary Execution Venue</div>
+        <div class="b-status pending"><span class="dot a"></span><span data-i18n="b2_status">PENDING</span></div>
+        <div class="b-name" data-i18n="b2_name">Backup Broker</div>
+        <div class="b-desc" data-i18n="b2_desc">Secondary Execution Venue</div>
         <div class="b-table">
-          <div class="b-row"><span class="b-k">Status</span><span class="b-v amber">Pending activation</span></div>
-          <div class="b-row"><span class="b-k">Mode</span><span class="b-v gray">Live Trading</span></div>
-          <div class="b-row"><span class="b-k">Protocol</span><span class="b-v gray">API Layer / Direct connect</span></div>
+          <div class="b-row"><span class="b-k" data-i18n="b_status">Status</span><span class="b-v amber" data-i18n="b2_sv">Pending activation</span></div>
+          <div class="b-row"><span class="b-k" data-i18n="b_mode">Mode</span><span class="b-v" data-i18n="b_live_trading">Live Trading</span></div>
+          <div class="b-row"><span class="b-k" data-i18n="b_protocol">Protocol</span><span class="b-v">API Layer / Direct connect</span></div>
         </div>
       </div>
-      <div class="broker live">
-        <div class="b-status live"><span class="dot g"></span>ACTIVE</div>
-        <div class="b-name">Signal Platform</div>
-        <div class="b-desc">Quantitative Signal Platform</div>
+      <div class="broker active">
+        <div class="b-status active"><span class="dot" style="background:var(--indigo);box-shadow:0 0 7px var(--indigo)"></span><span data-i18n="b3_status">ACTIVE</span></div>
+        <div class="b-name" data-i18n="b3_name">Signal Platform</div>
+        <div class="b-desc" data-i18n="b3_desc">Quantitative Signal Platform</div>
         <div class="b-table">
-          <div class="b-row"><span class="b-k">Status</span><span class="b-v live">Real-time</span></div>
-          <div class="b-row"><span class="b-k">Mode</span><span class="b-v gray">Continuous</span></div>
-          <div class="b-row"><span class="b-k">Method</span><span class="b-v gray">Webhook / HTTP POST</span></div>
+          <div class="b-row"><span class="b-k" data-i18n="b_status">Status</span><span class="b-v indigo" data-i18n="b3_sv">Real-time</span></div>
+          <div class="b-row"><span class="b-k" data-i18n="b_mode">Mode</span><span class="b-v" data-i18n="b3_mode">Continuous</span></div>
+          <div class="b-row"><span class="b-k" data-i18n="b_method">Method</span><span class="b-v">Webhook / HTTP POST</span></div>
         </div>
       </div>
     </div>
   </div>
 </div>
- 
+
 <!-- ARCHITECTURE -->
 <div class="section alt">
   <div class="wrap">
-    <div class="s-eyebrow">System Design</div>
-    <div class="s-title">Execution architecture</div>
+    <div class="s-eyebrow" data-i18n="arch_eyebrow">System Design</div>
+    <div class="s-title" data-i18n="arch_title">Execution architecture</div>
     <div class="arch">
       <div class="arch-flow">
-        <div class="anode live"><span class="adot"></span><div class="at">Signal Source</div><div class="as">Quant signals</div></div>
-        <div class="aconn live"><span>Webhook</span></div>
-        <div class="anode live"><span class="adot"></span><div class="at">AI Engine</div><div class="as">Order router</div></div>
+        <div class="anode live"><span class="adot"></span><div class="at" data-i18n="n_signal">Signal Source</div><div class="as" data-i18n="n_quant">Quant signals</div></div>
+        <div class="aconn live"><span data-i18n="c_webhook">Webhook</span></div>
+        <div class="anode live"><span class="adot"></span><div class="at" data-i18n="n_engine">AI Engine</div><div class="as" data-i18n="n_router">Order router</div></div>
         <div class="aconn live"><span>Native API</span></div>
-        <div class="anode live"><span class="adot"></span><div class="at">Gateway</div><div class="as">Broker bridge</div></div>
-        <div class="aconn live"><span>Execution</span></div>
-        <div class="anode live"><span class="adot"></span><div class="at">Main Broker</div><div class="as">Live execution</div></div>
+        <div class="anode live"><span class="adot"></span><div class="at" data-i18n="n_gateway">Gateway</div><div class="as" data-i18n="n_bridge">Broker bridge</div></div>
+        <div class="aconn live"><span data-i18n="c_exec">Execution</span></div>
+        <div class="anode live"><span class="adot"></span><div class="at" data-i18n="b1_name">Main Broker</div><div class="as" data-i18n="n_live_exec">Live execution</div></div>
       </div>
-      <div class="arch-flow row2">
-        <div class="anode live" style="opacity:.2"><span class="adot"></span><div class="at">Signal Source</div><div class="as">Quant signals</div></div>
-        <div class="aconn live" style="opacity:.2"><span>Webhook</span></div>
-        <div class="anode live" style="opacity:.2"><span class="adot"></span><div class="at">AI Engine</div><div class="as">Order router</div></div>
+      <div class="arch-flow">
+        <div class="anode live" style="opacity:.2"><span class="adot"></span><div class="at" data-i18n="n_signal">Signal Source</div><div class="as" data-i18n="n_quant">Quant signals</div></div>
+        <div class="aconn live" style="opacity:.2"><span data-i18n="c_webhook">Webhook</span></div>
+        <div class="anode live" style="opacity:.2"><span class="adot"></span><div class="at" data-i18n="n_engine">AI Engine</div><div class="as" data-i18n="n_router">Order router</div></div>
         <div class="aconn pending"><span>REST API</span></div>
         <div class="anode pending"><span class="adot"></span><div class="at">API Layer</div><div class="as">Direct connect</div></div>
-        <div class="aconn pending"><span>Execution</span></div>
-        <div class="anode pending"><span class="adot"></span><div class="at">Backup Broker</div><div class="as">Pending</div></div>
+        <div class="aconn pending"><span data-i18n="c_exec">Execution</span></div>
+        <div class="anode pending"><span class="adot"></span><div class="at" data-i18n="b2_name">Backup Broker</div><div class="as" data-i18n="n_pending">Pending</div></div>
       </div>
     </div>
   </div>
 </div>
- 
+
 <!-- FOOTER -->
 <footer>
   <div class="ftr">
     <div class="ftr-l">© 2026 Zentinel — AI-Powered Trading Agent</div>
-<!--    <div class="ftr-r">Hetzner Cloud · Germany</div> -->
-    <div class="hdr-pill"><span class="dot g"></span>Cloud Infrastructure (2VCPU/Linux)</div>
+    <div class="hdr-pill"><span class="dot g"></span><span data-i18n="infra">Cloud Infrastructure (2vCPU / Linux)</span></div>
   </div>
 </footer>
- 
+
 <script>
+  /* ── TRANSLATIONS ── */
+  const i18n = {
+    en: {
+      main_broker:"Main Broker", backup_broker:"Backup Broker",
+      logo_sub:"AI-powered trading agent",
+      hero_tag:"LIVE TRADING SYSTEM",
+      hero_line1:"Systematic", hero_line2:"alpha generation", hero_line3:"at machine speed.",
+      hero_p:"Fully autonomous, multi-broker trading infrastructure. Real-time signal ingestion and sub-second order execution — designed to operate continuously, without human intervention.",
+      chip_live:"● Live Now", chip_multi:"Multi-Broker", chip_247:"24/7 Execution", chip_sys:"100% Systematic",
+      m1:"Brokers Connected", m2:"Autonomous Execution", m3:"Order Latency", m4:"Systematic",
+      assets_eyebrow:"Asset Classes", assets_title:"What we trade",
+      a1_name:"Stocks", a1_desc:"Individual equities on major US exchanges. Systematic long and short strategies driven by quantitative signals.",
+      a2_name:"ETFs", a2_desc:"Exchange-traded funds providing broad market and sector-specific exposure with institutional-grade liquidity.",
+      a3_name:"Crypto", a3_desc:"Digital assets operating around the clock. Automated strategies capitalizing on continuous market opportunities.",
+      brokers_eyebrow:"Infrastructure", brokers_title:"Broker connections",
+      b1_status:"CONNECTED", b1_name:"Main Broker", b1_desc:"Primary Execution Venue", b1_sv:"Live",
+      b2_status:"PENDING", b2_name:"Backup Broker", b2_desc:"Secondary Execution Venue", b2_sv:"Pending activation",
+      b3_status:"ACTIVE", b3_name:"Signal Platform", b3_desc:"Quantitative Signal Platform", b3_sv:"Real-time", b3_mode:"Continuous",
+      b_status:"Status", b_mode:"Mode", b_protocol:"Protocol", b_method:"Method", b_live_trading:"Live Trading",
+      arch_eyebrow:"System Design", arch_title:"Execution architecture",
+      n_signal:"Signal Source", n_quant:"Quant signals", n_engine:"AI Engine", n_router:"Order router",
+      n_gateway:"Gateway", n_bridge:"Broker bridge", n_live_exec:"Live execution", n_pending:"Pending",
+      c_webhook:"Webhook", c_exec:"Execution",
+      infra:"Cloud Infrastructure (2vCPU / Linux)"
+    },
+    es: {
+      main_broker:"Broker Principal", backup_broker:"Broker Secundario",
+      logo_sub:"Agente de trading con IA",
+      hero_tag:"SISTEMA EN OPERACIÓN",
+      hero_line1:"Generación", hero_line2:"sistemática de alfa", hero_line3:"a velocidad de máquina.",
+      hero_p:"Infraestructura de trading multi-broker totalmente autónoma. Ingesta de señales en tiempo real y ejecución de órdenes en menos de un segundo — diseñada para operar de forma continua, sin intervención humana.",
+      chip_live:"● En vivo", chip_multi:"Multi-Broker", chip_247:"Ejecución 24/7", chip_sys:"100% Sistemático",
+      m1:"Brokers Conectados", m2:"Ejecución Autónoma", m3:"Latencia de Orden", m4:"Sistemático",
+      assets_eyebrow:"Clases de Activos", assets_title:"Qué operamos",
+      a1_name:"Acciones", a1_desc:"Acciones individuales en las principales bolsas de EE.UU. Estrategias sistemáticas largas y cortas impulsadas por señales cuantitativas.",
+      a2_name:"ETFs", a2_desc:"Fondos cotizados que brindan exposición amplia al mercado y sectores específicos con liquidez de grado institucional.",
+      a3_name:"Cripto", a3_desc:"Activos digitales que operan las 24 horas. Estrategias automatizadas aprovechando oportunidades continuas del mercado.",
+      brokers_eyebrow:"Infraestructura", brokers_title:"Conexiones de brokers",
+      b1_status:"CONECTADO", b1_name:"Broker Principal", b1_desc:"Venue de Ejecución Primario", b1_sv:"En vivo",
+      b2_status:"PENDIENTE", b2_name:"Broker Secundario", b2_desc:"Venue de Ejecución Secundario", b2_sv:"Activación pendiente",
+      b3_status:"ACTIVO", b3_name:"Plataforma de Señales", b3_desc:"Plataforma de Señales Cuantitativas", b3_sv:"Tiempo real", b3_mode:"Continuo",
+      b_status:"Estado", b_mode:"Modo", b_protocol:"Protocolo", b_method:"Método", b_live_trading:"Trading en Vivo",
+      arch_eyebrow:"Diseño del Sistema", arch_title:"Arquitectura de ejecución",
+      n_signal:"Fuente de Señal", n_quant:"Señales cuant.", n_engine:"Motor IA", n_router:"Enrutador de órdenes",
+      n_gateway:"Gateway", n_bridge:"Puente al broker", n_live_exec:"Ejecución en vivo", n_pending:"Pendiente",
+      c_webhook:"Webhook", c_exec:"Ejecución",
+      infra:"Infraestructura Cloud (2vCPU / Linux)"
+    }
+  };
+
+  let lang = 'en';
+  let theme = 'light';
+
+  function applyLang(l) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (i18n[l][key]) el.textContent = i18n[l][key];
+    });
+    document.documentElement.setAttribute('lang', l);
+    document.getElementById('lang-label').textContent = l === 'en' ? 'ES' : 'EN';
+  }
+
+  function toggleLang() {
+    lang = lang === 'en' ? 'es' : 'en';
+    applyLang(lang);
+  }
+
+  function toggleTheme() {
+    theme = theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    document.getElementById("icon-dark").style.display  = theme === "dark"  ? "block" : "none";
+    document.getElementById("icon-light").style.display = theme === "light" ? "block" : "none";
+    // Fix arch connector label bg in light mode
+    document.querySelectorAll('.aconn span').forEach(el => {
+      el.style.background = getComputedStyle(document.documentElement).getPropertyValue('--conn-label-bg').trim();
+    });
+  }
+
+  /* ── CLOCK ── */
   function updateClock() {
     const n = new Date(), p = v => String(v).padStart(2,'0');
     document.getElementById('clock').textContent =
