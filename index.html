@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,78 +7,70 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* ── DARK theme (default) ── */
-    [data-theme="light"] {
+    [data-theme="dark"] {
       --bg:      #000000;
       --bg-alt:  #0d0d0d;
       --card:    #141414;
       --border:  #222222;
       --text:    #ffffff;
       --text2:   #a0a0a0;
-      --text3:   #888888;
       --muted:   #555555;
       --chip-bg: #1e1e1e;
       --chip-c:  #cccccc;
       --tag-bg:  #2a2a2a;
       --tag-c:   #bbbbbb;
-      --node-bg-live:    rgba(0,200,5,.08);
-      --node-bd-live:    rgba(0,200,5,.3);
-      --node-bg-pend:    rgba(245,158,11,.07);
-      --node-bd-pend:    rgba(245,158,11,.25);
-      --node-title:      #ffffff;
-      --node-sub:        #aaaaaa;
-      --conn-label-bg:   #000000;
-      --conn-label-c:    rgba(0,200,5,.6);
-      --conn-label-cp:   rgba(245,158,11,.5);
-      --metric-num:      #ffffff;
-      --logo-filter:     brightness(0) invert(1);
+      --node-bg-live: rgba(0,200,5,.08);
+      --node-bd-live: rgba(0,200,5,.3);
+      --node-bg-pend: rgba(245,158,11,.07);
+      --node-bd-pend: rgba(245,158,11,.25);
+      --node-title:   #ffffff;
+      --node-sub:     #aaaaaa;
+      --conn-bg:      #000000;
+      --conn-c-live:  rgba(0,200,5,.6);
+      --conn-c-pend:  rgba(245,158,11,.5);
+      --metric-num:   #ffffff;
+      --logo-filter:  brightness(0) invert(1);
     }
-
-    /* ── LIGHT theme ── */
     [data-theme="light"] {
       --bg:      #ffffff;
       --bg-alt:  #f5f5f5;
-      --card:    #f0f0f0;
+      --card:    #efefef;
       --border:  #e0e0e0;
       --text:    #000000;
       --text2:   #444444;
-      --text3:   #666666;
       --muted:   #888888;
       --chip-bg: #e8e8e8;
       --chip-c:  #333333;
       --tag-bg:  #e0e0e0;
       --tag-c:   #333333;
-      --node-bg-live:    rgba(0,160,5,.08);
-      --node-bd-live:    rgba(0,160,5,.35);
-      --node-bg-pend:    rgba(200,130,0,.08);
-      --node-bd-pend:    rgba(200,130,0,.3);
-      --node-title:      #111111;
-      --node-sub:        #666666;
-      --conn-label-bg:   #f5f5f5;
-      --conn-label-c:    rgba(0,140,5,.7);
-      --conn-label-cp:   rgba(180,110,0,.6);
-      --metric-num:      #000000;
-      --logo-filter:     none;
+      --node-bg-live: rgba(0,160,5,.08);
+      --node-bd-live: rgba(0,160,5,.35);
+      --node-bg-pend: rgba(200,130,0,.08);
+      --node-bd-pend: rgba(200,130,0,.3);
+      --node-title:   #111111;
+      --node-sub:     #666666;
+      --conn-bg:      #f5f5f5;
+      --conn-c-live:  rgba(0,140,5,.7);
+      --conn-c-pend:  rgba(180,110,0,.6);
+      --metric-num:   #000000;
+      --logo-filter:  none;
     }
-
     :root {
-      --green:   #00c805;
-      --amber:   #f5a623;
-      --indigo:  #7c5cfc;
-      --f:       'Manrope', sans-serif;
+      --green:  #00c805;
+      --amber:  #f5a623;
+      --indigo: #7c5cfc;
+      --f:      'Manrope', sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: var(--f); -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background .3s, color .3s; }
-
     .wrap { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
 
-    /* ─── HEADER ── */
+    /* HEADER */
     header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: background .3s, border-color .3s; }
     .hdr { max-width: 1120px; margin: 0 auto; padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
     .logo { display: flex; align-items: center; gap: 10px; }
-    .logo img { width: 32px; height: 32px; object-fit: contain; filter: var(--logo-filter); transition: filter .3s; }
     .logo-text { display: flex; flex-direction: column; }
     .logo-n { font-size: 16px; font-weight: 700; letter-spacing: 1.5px; color: var(--text); line-height: 1; }
     .logo-sub { font-size: 9px; font-weight: 500; letter-spacing: 1.5px; color: var(--muted); margin-top: 3px; }
@@ -89,14 +81,12 @@
     .dot.a { background: var(--amber); box-shadow: 0 0 7px var(--amber); animation-duration: 2.5s; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
     .utc { font-size: 12px; font-weight: 500; color: var(--muted); font-variant-numeric: tabular-nums; letter-spacing: .5px; }
-
-    /* ─── TOGGLE BUTTONS ── */
     .hdr-controls { display: flex; align-items: center; gap: 8px; }
     .ctrl-btn { display: flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 100px; border: 1px solid var(--border); background: var(--card); color: var(--text2); font-family: var(--f); font-size: 11px; font-weight: 600; cursor: pointer; transition: all .2s; letter-spacing: .5px; }
     .ctrl-btn:hover { border-color: var(--green); color: var(--green); }
     .ctrl-btn svg { width: 13px; height: 13px; }
 
-    /* ─── HERO ── */
+    /* HERO */
     .hero { padding: 148px 0 100px; }
     .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,200,5,.1); border: 1px solid rgba(0,200,5,.25); border-radius: 100px; padding: 5px 14px; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; color: var(--green); margin-bottom: 36px; }
     .hero-tag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: blink 2s ease-in-out infinite; }
@@ -108,7 +98,7 @@
     .chip { font-size: 12px; font-weight: 600; padding: 8px 18px; border-radius: 100px; border: 1px solid var(--border); color: var(--chip-c); background: var(--chip-bg); letter-spacing: .5px; }
     .chip.live { background: rgba(0,200,5,.12); border-color: rgba(0,200,5,.35); color: var(--green); }
 
-    /* ─── METRICS ── */
+    /* METRICS */
     .metrics { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-alt); transition: background .3s; }
     .metrics-grid { display: grid; grid-template-columns: repeat(4,1fr); }
     .metric { padding: 36px 40px; border-right: 1px solid var(--border); }
@@ -116,24 +106,24 @@
     .metric-n { font-size: 44px; font-weight: 800; letter-spacing: -2px; color: var(--metric-num); line-height: 1; margin-bottom: 6px; }
     .metric-l { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase; }
 
-    /* ─── SECTIONS ── */
+    /* SECTIONS */
     .section { padding: 100px 0; }
     .section + .section { border-top: 1px solid var(--border); }
     .section.alt { background: var(--bg-alt); transition: background .3s; }
     .s-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--green); text-transform: uppercase; margin-bottom: 12px; }
     .s-title { font-size: clamp(28px, 3vw, 42px); font-weight: 800; letter-spacing: -1px; color: var(--text); margin-bottom: 48px; line-height: 1.1; }
 
-    /* ─── ASSETS ── */
+    /* ASSETS */
     .assets-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
     .asset { background: var(--card); padding: 40px; transition: background .2s; }
     .asset:hover { filter: brightness(1.05); }
     .asset-ico { font-size: 28px; margin-bottom: 24px; }
     .asset-n { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 10px; letter-spacing: -.5px; }
-    .asset-d { font-size: 14px; font-weight: 400; color: var(--text2); line-height: 1.75; margin-bottom: 24px; }
+    .asset-d { font-size: 14px; color: var(--text2); line-height: 1.75; margin-bottom: 24px; }
     .tags { display: flex; gap: 6px; flex-wrap: wrap; }
     .tag { font-size: 10px; font-weight: 600; letter-spacing: .5px; padding: 3px 10px; background: var(--tag-bg); color: var(--tag-c); border-radius: 4px; }
 
-    /* ─── BROKERS ── */
+    /* BROKERS */
     .broker-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
     .broker { background: var(--card); padding: 40px; position: relative; overflow: hidden; transition: background .2s; }
     .broker:hover { filter: brightness(1.05); }
@@ -152,11 +142,11 @@
     .b-row:last-child { border-bottom: none; }
     .b-k { color: var(--muted); font-weight: 500; }
     .b-v { font-weight: 600; font-size: 12px; color: var(--text2); }
-    .b-v.live    { color: var(--green); }
-    .b-v.amber   { color: var(--amber); }
-    .b-v.indigo  { color: var(--indigo); }
+    .b-v.live   { color: var(--green); }
+    .b-v.amber  { color: var(--amber); }
+    .b-v.indigo { color: var(--indigo); }
 
-    /* ─── ARCHITECTURE ── */
+    /* ARCHITECTURE */
     .arch { display: flex; flex-direction: column; gap: 12px; }
     .arch-flow { display: flex; align-items: center; justify-content: center; }
     .anode { flex-shrink: 0; width: 152px; border-radius: 10px; padding: 16px 0; text-align: center; position: relative; transition: background .3s, border-color .3s; }
@@ -171,11 +161,11 @@
     .aconn::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; transform: translateY(-50%); }
     .aconn.live::before    { background: rgba(0,200,5,.25); }
     .aconn.pending::before { background: rgba(245,158,11,.2); }
-    .aconn span { position: relative; z-index: 1; background: var(--conn-label-bg); padding: 0 5px; font-size: 9px; font-weight: 600; letter-spacing: .5px; transition: background .3s; }
-    .aconn.live span    { color: var(--conn-label-c); }
-    .aconn.pending span { color: var(--conn-label-cp); }
+    .aconn span { position: relative; z-index: 1; background: var(--conn-bg); padding: 0 5px; font-size: 9px; font-weight: 600; letter-spacing: .5px; transition: background .3s; }
+    .aconn.live span    { color: var(--conn-c-live); }
+    .aconn.pending span { color: var(--conn-c-pend); }
 
-    /* ─── FOOTER ── */
+    /* FOOTER */
     footer { border-top: 1px solid var(--border); padding: 28px 0; }
     .ftr { max-width: 1120px; margin: 0 auto; padding: 0 48px; display: flex; justify-content: space-between; align-items: center; }
     .ftr-l { font-size: 12px; font-weight: 500; color: var(--muted); }
@@ -196,7 +186,6 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="hdr">
     <div class="logo">
@@ -210,22 +199,19 @@
       <div class="hdr-pill"><span class="dot a"></span><span data-i18n="backup_broker">Backup Broker</span></div>
       <div class="utc" id="clock">--:--:-- UTC</div>
       <div class="hdr-controls">
-        <!-- Language toggle -->
-        <button class="ctrl-btn" onclick="toggleLang()" id="lang-btn">
+        <button class="ctrl-btn" onclick="toggleLang()" >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/></svg>
           <span id="lang-label">ES</span>
         </button>
-        <!-- Theme toggle -->
-        <button class="ctrl-btn" onclick="toggleTheme()" id="theme-btn">
-          <svg id="icon-dark" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg id="icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <button class="ctrl-btn" onclick="toggleTheme()">
+          <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         </button>
       </div>
     </div>
   </div>
 </header>
 
-<!-- HERO -->
 <div class="hero">
   <div class="wrap">
     <div class="hero-tag" data-i18n="hero_tag">LIVE TRADING SYSTEM</div>
@@ -244,7 +230,6 @@
   </div>
 </div>
 
-<!-- METRICS -->
 <div class="metrics">
   <div class="wrap">
     <div class="metrics-grid">
@@ -256,35 +241,18 @@
   </div>
 </div>
 
-<!-- ASSETS -->
 <div class="section alt">
   <div class="wrap">
     <div class="s-eyebrow" data-i18n="assets_eyebrow">Asset Classes</div>
     <div class="s-title" data-i18n="assets_title">What we trade</div>
     <div class="assets-row">
-      <div class="asset">
-        <div class="asset-ico">📈</div>
-        <div class="asset-n" data-i18n="a1_name">Stocks</div>
-        <div class="asset-d" data-i18n="a1_desc">Individual equities on major US exchanges. Systematic long and short strategies driven by quantitative signals.</div>
-        <div class="tags"><span class="tag">NYSE</span><span class="tag">NASDAQ</span><span class="tag">S&amp;P 500</span></div>
-      </div>
-      <div class="asset">
-        <div class="asset-ico">🗂️</div>
-        <div class="asset-n" data-i18n="a2_name">ETFs</div>
-        <div class="asset-d" data-i18n="a2_desc">Exchange-traded funds providing broad market and sector-specific exposure with institutional-grade liquidity.</div>
-        <div class="tags"><span class="tag">CORE</span><span class="tag">SECTOR</span><span class="tag">THEMATIC</span></div>
-      </div>
-      <div class="asset">
-        <div class="asset-ico">₿</div>
-        <div class="asset-n" data-i18n="a3_name">Crypto</div>
-        <div class="asset-d" data-i18n="a3_desc">Digital assets operating around the clock. Automated strategies capitalizing on continuous market opportunities.</div>
-        <div class="tags"><span class="tag">BTC</span><span class="tag">ETH</span><span class="tag">XRP</span></div>
-      </div>
+      <div class="asset"><div class="asset-ico">📈</div><div class="asset-n" data-i18n="a1_name">Stocks</div><div class="asset-d" data-i18n="a1_desc">Individual equities on major US exchanges. Systematic long and short strategies driven by quantitative signals.</div><div class="tags"><span class="tag">NYSE</span><span class="tag">NASDAQ</span><span class="tag">S&amp;P 500</span></div></div>
+      <div class="asset"><div class="asset-ico">🗂️</div><div class="asset-n" data-i18n="a2_name">ETFs</div><div class="asset-d" data-i18n="a2_desc">Exchange-traded funds providing broad market and sector-specific exposure with institutional-grade liquidity.</div><div class="tags"><span class="tag">CORE</span><span class="tag">SECTOR</span><span class="tag">THEMATIC</span></div></div>
+      <div class="asset"><div class="asset-ico">₿</div><div class="asset-n" data-i18n="a3_name">Crypto</div><div class="asset-d" data-i18n="a3_desc">Digital assets operating around the clock. Automated strategies capitalizing on continuous market opportunities.</div><div class="tags"><span class="tag">BTC</span><span class="tag">ETH</span><span class="tag">XRP</span></div></div>
     </div>
   </div>
 </div>
 
-<!-- BROKERS -->
 <div class="section">
   <div class="wrap">
     <div class="s-eyebrow" data-i18n="brokers_eyebrow">Infrastructure</div>
@@ -324,7 +292,6 @@
   </div>
 </div>
 
-<!-- ARCHITECTURE -->
 <div class="section alt">
   <div class="wrap">
     <div class="s-eyebrow" data-i18n="arch_eyebrow">System Design</div>
@@ -352,7 +319,6 @@
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="ftr">
     <div class="ftr-l">© 2026 Zentinel — AI-Powered Trading Agent</div>
@@ -361,11 +327,10 @@
 </footer>
 
 <script>
-  /* ── TRANSLATIONS ── */
   const i18n = {
     en: {
-      main_broker:"Main Broker", backup_broker:"Backup Broker",
       logo_sub:"AI-powered trading agent",
+      main_broker:"Main Broker", backup_broker:"Backup Broker",
       hero_tag:"LIVE TRADING SYSTEM",
       hero_line1:"Systematic", hero_line2:"alpha generation", hero_line3:"at machine speed.",
       hero_p:"Fully autonomous, multi-broker trading infrastructure. Real-time signal ingestion and sub-second order execution — designed to operate continuously, without human intervention.",
@@ -383,15 +348,14 @@
       arch_eyebrow:"System Design", arch_title:"Execution architecture",
       n_signal:"Signal Source", n_quant:"Quant signals", n_engine:"AI Engine", n_router:"Order router",
       n_gateway:"Gateway", n_bridge:"Broker bridge", n_live_exec:"Live execution", n_pending:"Pending",
-      c_webhook:"Webhook", c_exec:"Execution",
-      infra:"Cloud Infrastructure (2vCPU / Linux)"
+      c_webhook:"Webhook", c_exec:"Execution", infra:"Cloud Infrastructure (2vCPU / Linux)"
     },
     es: {
-      main_broker:"Broker Principal", backup_broker:"Broker Secundario",
       logo_sub:"Agente de trading con IA",
+      main_broker:"Broker Principal", backup_broker:"Broker Secundario",
       hero_tag:"SISTEMA EN OPERACIÓN",
       hero_line1:"Generación", hero_line2:"sistemática de alfa", hero_line3:"a velocidad de máquina.",
-      hero_p:"Infraestructura de trading multi-broker totalmente autónoma. Ingesta de señales en tiempo real y ejecución de órdenes en menos de un segundo — diseñada para operar de forma continua, sin intervención humana.",
+      hero_p:"Infraestructura de trading multi-broker totalmente autónoma. Ingesta de señales en tiempo real y ejecución en menos de un segundo — diseñada para operar continuamente, sin intervención humana.",
       chip_live:"● En vivo", chip_multi:"Multi-Broker", chip_247:"Ejecución 24/7", chip_sys:"100% Sistemático",
       m1:"Brokers Conectados", m2:"Ejecución Autónoma", m3:"Latencia de Orden", m4:"Sistemático",
       assets_eyebrow:"Clases de Activos", assets_title:"Qué operamos",
@@ -404,20 +368,18 @@
       b3_status:"ACTIVO", b3_name:"Plataforma de Señales", b3_desc:"Plataforma de Señales Cuantitativas", b3_sv:"Tiempo real", b3_mode:"Continuo",
       b_status:"Estado", b_mode:"Modo", b_protocol:"Protocolo", b_method:"Método", b_live_trading:"Trading en Vivo",
       arch_eyebrow:"Diseño del Sistema", arch_title:"Arquitectura de ejecución",
-      n_signal:"Fuente de Señal", n_quant:"Señales cuant.", n_engine:"Motor IA", n_router:"Enrutador de órdenes",
+      n_signal:"Fuente de Señal", n_quant:"Señales cuant.", n_engine:"Motor IA", n_router:"Enrutador",
       n_gateway:"Gateway", n_bridge:"Puente al broker", n_live_exec:"Ejecución en vivo", n_pending:"Pendiente",
-      c_webhook:"Webhook", c_exec:"Ejecución",
-      infra:"Infraestructura Cloud (2vCPU / Linux)"
+      c_webhook:"Webhook", c_exec:"Ejecución", infra:"Infraestructura Cloud (2vCPU / Linux)"
     }
   };
 
-  let lang = 'en';
-  let theme = 'light';
+  let lang = 'en', theme = 'dark';
 
   function applyLang(l) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (i18n[l][key]) el.textContent = i18n[l][key];
+      const k = el.getAttribute('data-i18n');
+      if (i18n[l][k]) el.textContent = i18n[l][k];
     });
     document.documentElement.setAttribute('lang', l);
     document.getElementById('lang-label').textContent = l === 'en' ? 'ES' : 'EN';
@@ -431,15 +393,10 @@
   function toggleTheme() {
     theme = theme === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', theme);
-    document.getElementById("icon-dark").style.display  = theme === "dark"  ? "block" : "none";
-    document.getElementById("icon-light").style.display = theme === "light" ? "block" : "none";
-    // Fix arch connector label bg in light mode
-    document.querySelectorAll('.aconn span').forEach(el => {
-      el.style.background = getComputedStyle(document.documentElement).getPropertyValue('--conn-label-bg').trim();
-    });
+    document.getElementById('icon-moon').style.display = theme === 'dark'  ? 'block' : 'none';
+    document.getElementById('icon-sun').style.display  = theme === 'light' ? 'block' : 'none';
   }
 
-  /* ── CLOCK ── */
   function updateClock() {
     const n = new Date(), p = v => String(v).padStart(2,'0');
     document.getElementById('clock').textContent =
