@@ -5,136 +5,138 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zentinel — AI-Powered Trading Agent</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Roboto+Condensed:wght@700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:      #081428;
-      --surface: #0d1e38;
-      --border:  #162d52;
-      --accent:  #4a8fd4;
-      --accent2: #6eb5ff;
-      --gold:    #c8a96e;
-      --green:   #4ade80;
-      --red:     #f87171;
-      --text:    #e8eef8;
-      --muted:   #4a6080;
-      --mono:    'DM Mono', monospace;
-      --display: 'Bebas Neue', sans-serif;
-      --serif:   'Playfair Display', serif;
+      --bg:      #07120d;
+      --surface: #0a1a12;
+      --card:    #0d2018;
+      --card2:   #102518;
+      --border:  #193324;
+      --border2: #214530;
+      --green:   #2dbe6c;
+      --green2:  #3dd68c;
+      --green3:  #1a9950;
+      --text:    #dff0e6;
+      --text2:   #7aaa8a;
+      --muted:   #3a6048;
+      --gold:    #c8a040;
+      --red:     #e05555;
+      --display: 'Roboto Condensed', sans-serif;
+      --body:    'Roboto', sans-serif;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;line-height:1.6;overflow-x:hidden}
-    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.3}
-    .grid-bg{position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:.3;pointer-events:none;z-index:0}
+    body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14px;line-height:1.6;overflow-x:hidden}
+    .grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(25,51,36,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(25,51,36,.35) 1px,transparent 1px);background-size:72px 72px;pointer-events:none;z-index:0}
 
-    /* Header */
-    header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--border);background:rgba(8,20,40,.92);backdrop-filter:blur(16px)}
+    /* ── Header ── */
+    header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 56px;border-bottom:1px solid var(--border);background:rgba(7,18,13,.96);backdrop-filter:blur(20px)}
     .logo-wrap{display:flex;align-items:center;gap:12px}
-    .logo-img{width:44px;height:44px;object-fit:contain;border-radius:4px}
+    .logo-img{width:38px;height:38px;object-fit:contain;filter:brightness(0) invert(1);opacity:.95}
     .logo-text{display:flex;flex-direction:column}
-    .logo-name{font-family:var(--display);font-size:22px;letter-spacing:4px;color:var(--text);line-height:1}
-    .logo-sub{font-size:9px;letter-spacing:3px;color:var(--muted);margin-top:2px}
-    .nav-right{display:flex;align-items:center;gap:20px}
-    .status-pill{display:flex;align-items:center;gap:7px;padding:5px 12px;border:1px solid var(--border);border-radius:2px;font-size:10px;letter-spacing:1.5px;color:var(--muted)}
-    .dot{width:7px;height:7px;border-radius:50%;animation:pulse 2s ease-in-out infinite}
-    .dot.green{background:var(--green);box-shadow:0 0 8px var(--green)}
-    .dot.yellow{background:var(--gold);box-shadow:0 0 8px var(--gold)}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-    .live-time{font-size:11px;color:var(--muted);letter-spacing:2px}
+    .logo-name{font-family:var(--display);font-size:22px;font-weight:800;letter-spacing:3px;color:var(--text);line-height:1}
+    .logo-sub{font-size:9px;letter-spacing:2px;color:var(--muted);margin-top:3px;font-weight:400}
+    .nav-right{display:flex;align-items:center;gap:14px}
+    .status-pill{display:flex;align-items:center;gap:7px;padding:5px 14px;border:1px solid var(--border2);border-radius:100px;font-size:10px;letter-spacing:1px;color:var(--text2)}
+    .dot{width:6px;height:6px;border-radius:50%;animation:pulse 2.5s ease-in-out infinite;flex-shrink:0}
+    .dot.green{background:var(--green2);box-shadow:0 0 8px var(--green2)}
+    .dot.yellow{background:var(--gold);box-shadow:0 0 6px var(--gold)}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+    .live-time{font-size:11px;color:var(--muted);letter-spacing:1.5px;font-variant-numeric:tabular-nums}
 
-    /* Hero */
-    .hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:130px 48px 80px}
-    .hero-eyebrow{font-size:10px;letter-spacing:5px;color:var(--accent);margin-bottom:28px;opacity:0;animation:fadeUp .8s ease forwards .2s}
-    .hero-title{font-family:var(--display);font-size:clamp(70px,10vw,136px);line-height:.9;letter-spacing:2px;opacity:0;animation:fadeUp .8s ease forwards .4s}
-    .hero-title em{font-family:var(--serif);font-style:italic;color:var(--accent2);font-size:.72em}
-    .hero-sub{max-width:500px;color:var(--muted);font-size:12px;line-height:1.9;margin-top:36px;opacity:0;animation:fadeUp .8s ease forwards .6s}
+    /* ── Hero ── */
+    .hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 56px 80px;max-width:1000px}
+    .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(45,190,108,.1);border:1px solid rgba(45,190,108,.25);border-radius:100px;padding:6px 16px;font-size:10px;letter-spacing:2px;color:var(--green2);margin-bottom:36px;opacity:0;animation:fadeUp .9s ease forwards .2s;font-weight:500}
+    .hero-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green2);box-shadow:0 0 6px var(--green2)}
+    .hero-title{font-family:var(--display);font-size:clamp(52px,7vw,96px);line-height:1;font-weight:800;letter-spacing:-1px;color:var(--text);opacity:0;animation:fadeUp .9s ease forwards .35s}
+    .hero-title .accent{color:var(--green2)}
+    .hero-title .dim{color:var(--text2);font-weight:300;font-style:italic;font-family:var(--body);font-size:.32em;letter-spacing:.5px;display:block;margin-top:16px}
+    .hero-sub{max-width:480px;color:var(--text2);font-size:15px;line-height:1.8;margin-top:32px;opacity:0;animation:fadeUp .9s ease forwards .5s;font-weight:300}
+    .hero-cta{display:flex;align-items:center;gap:10px;margin-top:36px;opacity:0;animation:fadeUp .9s ease forwards .65s;flex-wrap:wrap}
+    .badge{padding:7px 18px;border-radius:100px;font-size:11px;letter-spacing:.5px;font-weight:500;border:1px solid var(--border2);color:var(--text2)}
+    .badge.active{background:rgba(45,190,108,.12);border-color:rgba(45,190,108,.35);color:var(--green2)}
 
-    /* Ticker */
-    .ticker-wrap{position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);overflow:hidden;padding:10px 0}
-    .ticker{display:flex;animation:tickeranim 50s linear infinite;white-space:nowrap}
-    .ticker-item{padding:0 36px;font-size:11px;letter-spacing:1.5px;color:var(--muted);border-right:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-shrink:0}
-    .ticker-sym{color:var(--text);font-weight:400}
-    .ticker-price{color:var(--text)}
-    .ticker-chg.up{color:var(--green)}
-    .ticker-chg.down{color:var(--red)}
-    @keyframes tickeranim{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    /* ── TradingView Ticker ── */
+    .ticker-wrap{position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface)}
+    .tradingview-widget-container{width:100%}
 
-    /* Stats bar */
+    /* ── Stats ── */
     .stats-bar{position:relative;z-index:1;background:var(--surface);display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border)}
-    .stat-item{padding:36px 40px;border-right:1px solid var(--border)}
+    .stat-item{padding:32px 44px;border-right:1px solid var(--border)}
     .stat-item:last-child{border-right:none}
-    .stat-num{font-family:var(--display);font-size:44px;letter-spacing:2px;color:var(--accent2);line-height:1;margin-bottom:6px}
-    .stat-label{font-size:9px;letter-spacing:3px;color:var(--muted)}
+    .stat-num{font-family:var(--display);font-size:38px;font-weight:800;color:var(--text);line-height:1;margin-bottom:6px}
+    .stat-label{font-size:9px;letter-spacing:2px;color:var(--muted);font-weight:500}
 
-    /* Sections */
-    section{position:relative;z-index:1;padding:90px 48px}
-    .section-label{font-size:10px;letter-spacing:5px;color:var(--accent);margin-bottom:44px;display:flex;align-items:center;gap:16px}
-    .section-label::after{content:'';flex:1;height:1px;background:var(--border);max-width:120px}
+    /* ── Sections ── */
+    section{position:relative;z-index:1;padding:88px 56px}
+    .section-eyebrow{font-size:10px;letter-spacing:3px;color:var(--green);font-weight:500;margin-bottom:10px}
+    .section-title{font-family:var(--display);font-size:clamp(26px,3vw,38px);font-weight:800;color:var(--text);margin-bottom:44px;letter-spacing:-.5px}
 
-    /* Connections */
-    .connections{background:var(--surface);border-top:1px solid var(--border)}
-    .conn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--border);border:1px solid var(--border)}
-    .conn-card{background:var(--bg);padding:36px;position:relative;overflow:hidden;transition:background .3s}
-    .conn-card:hover{background:#0a1930}
-    .conn-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
-    .conn-card.main::before{background:var(--accent2)}
-    .conn-card.backup::before{background:var(--gold)}
-    .conn-card.signal::before{background:#60a5fa}
-    .conn-broker{font-family:var(--display);font-size:28px;letter-spacing:3px;margin-bottom:6px}
-    .conn-card.main .conn-broker{color:var(--accent2)}
-    .conn-card.backup .conn-broker{color:var(--gold)}
-    .conn-card.signal .conn-broker{color:#60a5fa}
-    .conn-desc{color:var(--muted);font-size:10px;letter-spacing:1.5px;margin-bottom:28px}
+    /* ── Assets ── */
+    .assets{border-top:1px solid var(--border);background:var(--surface)}
+    .assets-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .asset-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:36px;transition:all .3s}
+    .asset-card:hover{border-color:var(--border2);background:var(--card2);transform:translateY(-2px)}
+    .asset-icon-wrap{width:44px;height:44px;border-radius:10px;background:rgba(45,190,108,.1);border:1px solid rgba(45,190,108,.2);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:20px}
+    .asset-title{font-family:var(--display);font-size:22px;font-weight:700;color:var(--text);margin-bottom:10px}
+    .asset-desc{font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:20px;font-weight:300}
+    .asset-tags{display:flex;flex-wrap:wrap;gap:6px}
+    .asset-tag{font-size:9px;letter-spacing:1px;padding:3px 10px;border-radius:100px;border:1px solid var(--border2);color:var(--muted);font-weight:500}
+
+    /* ── Connections ── */
+    .connections{border-top:1px solid var(--border)}
+    .conn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .conn-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:36px;position:relative;overflow:hidden;transition:all .3s}
+    .conn-card:hover{border-color:var(--border2);background:var(--card2);transform:translateY(-2px)}
+    .conn-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;font-size:10px;letter-spacing:.5px;font-weight:500;margin-bottom:20px}
+    .conn-badge.connected{background:rgba(45,190,108,.12);border:1px solid rgba(45,190,108,.25);color:var(--green2)}
+    .conn-badge.pending{background:rgba(200,160,64,.1);border:1px solid rgba(200,160,64,.25);color:var(--gold)}
+    .conn-badge.active{background:rgba(100,170,255,.1);border:1px solid rgba(100,170,255,.25);color:#6ab4ff}
+    .conn-badge .dot-sm{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+    .conn-badge.connected .dot-sm{background:var(--green2)}
+    .conn-badge.pending .dot-sm{background:var(--gold)}
+    .conn-badge.active .dot-sm{background:#6ab4ff}
+    .conn-broker{font-family:var(--display);font-size:24px;font-weight:700;color:var(--text);margin-bottom:6px}
+    .conn-desc{color:var(--muted);font-size:11px;letter-spacing:.5px;margin-bottom:28px;font-weight:400}
     .conn-stats{display:flex;flex-direction:column}
-    .conn-stat{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:11px}
+    .conn-stat{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:12px}
     .conn-stat:last-child{border-bottom:none}
-    .conn-stat .label{color:var(--muted);letter-spacing:1px}
-    .conn-stat .value{color:var(--text)}
-    .conn-stat .value.green{color:var(--green)}
+    .conn-stat .label{color:var(--muted);font-weight:400}
+    .conn-stat .value{color:var(--text2);font-weight:500}
+    .conn-stat .value.green{color:var(--green2)}
     .conn-stat .value.gold{color:var(--gold)}
-    .conn-stat .value.blue{color:#60a5fa}
-    .conn-number{position:absolute;bottom:16px;right:20px;font-family:var(--display);font-size:72px;color:var(--border);line-height:1;pointer-events:none}
+    .conn-stat .value.blue{color:#6ab4ff}
+    .conn-number{position:absolute;bottom:12px;right:20px;font-family:var(--display);font-size:64px;font-weight:800;color:var(--border);line-height:1;pointer-events:none}
 
-    /* Assets */
-    .assets{border-top:1px solid var(--border)}
-    .assets-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
-    .asset-card{background:var(--bg);padding:40px;display:flex;flex-direction:column;align-items:flex-start;gap:16px;transition:background .3s}
-    .asset-card:hover{background:#0a1930}
-    .asset-icon{font-size:32px}
-    .asset-title{font-family:var(--display);font-size:28px;letter-spacing:3px;color:var(--text)}
-    .asset-desc{font-size:11px;color:var(--muted);letter-spacing:1px;line-height:1.7}
-    .asset-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-    .asset-tag{font-size:10px;letter-spacing:1px;padding:4px 10px;border:1px solid var(--border);color:var(--muted)}
+    /* ── Architecture ── */
+    .arch{border-top:1px solid var(--border);background:var(--surface)}
+    .arch-flows{display:flex;flex-direction:column;gap:12px}
+    .arch-flow{display:flex;align-items:stretch;justify-content:center;overflow-x:auto;gap:0}
+    .arch-node{flex-shrink:0;border:1px solid var(--border);border-radius:10px;padding:18px 0;text-align:center;width:160px;display:flex;flex-direction:column;justify-content:center;background:var(--card);transition:border-color .3s}
+    .arch-node:hover{border-color:var(--border2)}
+    .arch-node .node-title{font-family:var(--display);font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
+    .arch-node .node-sub{font-size:9px;color:var(--muted);letter-spacing:.5px;font-weight:400}
+    .arch-arrow{flex-shrink:0;width:64px;position:relative;display:flex;align-items:center;justify-content:center}
+    .arch-arrow::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:var(--border2);transform:translateY(-50%)}
+    .arch-arrow span{position:relative;z-index:1;background:var(--surface);padding:0 5px;font-size:8px;letter-spacing:.5px;color:var(--muted);font-weight:500}
 
-    /* Architecture */
-    .arch{border-top:1px solid var(--border)}
-    .arch-flow{display:flex;align-items:stretch;overflow-x:auto;padding:16px 0}
-    .arch-flow+.arch-flow{margin-top:1px}
-    .arch-node{flex-shrink:0;border:1px solid var(--border);padding:18px 0;text-align:center;width:160px;display:flex;flex-direction:column;justify-content:center}
-    .arch-node .node-title{font-family:var(--display);font-size:15px;letter-spacing:2px;color:var(--accent2);margin-bottom:4px}
-    .arch-node .node-sub{font-size:9px;color:var(--muted);letter-spacing:1px}
-    .arch-arrow{flex-shrink:0;width:80px;position:relative;display:flex;align-items:center;justify-content:center}
-    .arch-arrow::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:var(--border);transform:translateY(-50%)}
-    .arch-arrow span{position:relative;z-index:1;background:var(--bg);padding:0 6px;font-size:9px;letter-spacing:1px;color:var(--muted)}
+    /* ── Footer ── */
+    footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:28px 56px;display:flex;justify-content:space-between;align-items:center}
+    .footer-left{font-size:11px;color:var(--muted);letter-spacing:.5px;font-weight:400}
+    .footer-right{font-size:11px;color:var(--muted);letter-spacing:.5px;font-weight:300}
 
-    /* Footer */
-    footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:28px 48px;display:flex;justify-content:space-between;align-items:center}
-    .footer-left{font-size:10px;color:var(--muted);letter-spacing:2px}
-    .footer-right{font-size:10px;color:var(--muted);letter-spacing:1px}
-
-    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    ::-webkit-scrollbar{width:4px;height:4px}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    ::-webkit-scrollbar{width:3px;height:3px}
     ::-webkit-scrollbar-track{background:var(--bg)}
-    ::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+    ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
 
-    @media(max-width:768px){
+    @media(max-width:900px){
       header{padding:14px 20px}
       .hero{padding:110px 20px 60px}
       section{padding:60px 20px}
-      .stats-bar{grid-template-columns:repeat(2,1fr)}
-      .assets-grid{grid-template-columns:1fr}
-      footer{flex-direction:column;gap:10px}
+      .stats-bar,.assets-grid,.conn-grid{grid-template-columns:1fr}
+      footer{flex-direction:column;gap:8px;text-align:center}
       .nav-right .status-pill{display:none}
     }
   </style>
@@ -142,144 +144,189 @@
 <body>
 <div class="grid-bg"></div>
 
+<!-- Header -->
 <header>
   <div class="logo-wrap">
-    <img class="logo-img" src="data:image/png;base64,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" alt="Zentinel Logo">
+    <img class="logo-img" src="data:image/png;base64,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" alt="Zentinel">
     <div class="logo-text">
       <div class="logo-name">ZENTINEL</div>
       <div class="logo-sub">AI-POWERED TRADING AGENT</div>
     </div>
   </div>
   <div class="nav-right">
-    <div class="status-pill"><div class="dot green"></div>MAIN BROKER</div>
-    <div class="status-pill"><div class="dot yellow"></div>BACKUP BROKER</div>
+    <div class="status-pill"><div class="dot green"></div>Main Broker</div>
+    <div class="status-pill"><div class="dot yellow"></div>Backup Broker</div>
     <div class="live-time" id="clock">--:--:-- UTC</div>
   </div>
 </header>
 
+<!-- Hero -->
 <section class="hero">
-  <div class="hero-eyebrow">AI-POWERED ALGORITHMIC TRADING INFRASTRUCTURE</div>
-  <h1 class="hero-title">SYSTEMATIC<br><em>Alpha</em><br>GENERATION</h1>
-  <p class="hero-sub">Fully autonomous multi-broker trading infrastructure powered by artificial intelligence. Real-time signal processing and sub-second order execution, operating 24/7 without human intervention.</p>
+  <div class="hero-tag">AI-POWERED ALGORITHMIC TRADING</div>
+  <h1 class="hero-title">
+    Systematic<br>
+    <span class="accent">Alpha</span><br>
+    Generation
+    <span class="dim">Autonomous. Precise. Always On.</span>
+  </h1>
+  <p class="hero-sub">Fully autonomous multi-broker trading infrastructure. Real-time signal processing and sub-second order execution across multiple venues, operating 24/7 without human intervention.</p>
+  <div class="hero-cta">
+    <span class="badge active">● Live Trading</span>
+    <span class="badge">Multi-Broker</span>
+    <span class="badge">24/7 Execution</span>
+  </div>
 </section>
 
+<!-- TradingView Ticker Tape -->
 <div class="ticker-wrap">
-  <div class="ticker" id="ticker-inner">
-    <div class="ticker-item"><span style="color:var(--muted);font-style:italic">Fetching market data...</span></div>
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+      "symbols": [
+        { "proName": "NASDAQ:QQQ",  "title": "QQQ" },
+        { "proName": "AMEX:SPY",    "title": "SPY" },
+        { "proName": "NASDAQ:AAPL", "title": "Apple" },
+        { "proName": "NASDAQ:MSFT", "title": "Microsoft" },
+        { "proName": "NASDAQ:NVDA", "title": "NVIDIA" },
+        { "proName": "NASDAQ:GOOGL","title": "Alphabet" },
+        { "proName": "NASDAQ:AMZN", "title": "Amazon" },
+        { "proName": "NASDAQ:META", "title": "Meta" },
+        { "proName": "NASDAQ:TSLA", "title": "Tesla" }
+      ],
+      "showSymbolLogo": true,
+      "isTransparent": true,
+      "displayMode": "adaptive",
+      "colorTheme": "dark",
+      "locale": "en"
+    }
+    </script>
   </div>
 </div>
 
+<!-- Stats -->
 <div class="stats-bar">
   <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">BROKERS CONNECTED</div></div>
   <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">AUTONOMOUS EXECUTION</div></div>
-  <div class="stat-item"><div class="stat-num">&lt;1S</div><div class="stat-label">ORDER LATENCY</div></div>
+  <div class="stat-item"><div class="stat-num">&lt;1s</div><div class="stat-label">ORDER LATENCY</div></div>
   <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">SYSTEMATIC</div></div>
 </div>
 
-<section class="connections">
-  <div class="section-label">01 — BROKER CONNECTIONS</div>
-  <div class="conn-grid">
-    <div class="conn-card main">
-      <div class="conn-broker">MAIN BROKER</div>
-      <div class="conn-desc">PRIMARY EXECUTION VENUE — LIVE TRADING</div>
-      <div class="conn-stats">
-        <div class="conn-stat"><span class="label">STATUS</span><span class="value green">● CONNECTED</span></div>
-        <div class="conn-stat"><span class="label">MODE</span><span class="value gold">LIVE</span></div>
-        <div class="conn-stat"><span class="label">PROTOCOL</span><span class="value">NATIVE API / TCP</span></div>
-      </div>
-      <div class="conn-number">01</div>
-    </div>
-    <div class="conn-card backup">
-      <div class="conn-broker">BACKUP BROKER</div>
-      <div class="conn-desc">SECONDARY EXECUTION VENUE — PENDING</div>
-      <div class="conn-stats">
-        <div class="conn-stat"><span class="label">STATUS</span><span class="value" style="color:var(--gold)">● PENDING</span></div>
-        <div class="conn-stat"><span class="label">MODE</span><span class="value gold">LIVE</span></div>
-        <div class="conn-stat"><span class="label">PROTOCOL</span><span class="value">REST API / OAUTH 2.0</span></div>
-      </div>
-      <div class="conn-number">02</div>
-    </div>
-    <div class="conn-card signal">
-      <div class="conn-broker">SIGNAL SOURCE</div>
-      <div class="conn-desc">QUANTITATIVE SIGNAL PLATFORM</div>
-      <div class="conn-stats">
-        <div class="conn-stat"><span class="label">STATUS</span><span class="value blue">● ACTIVE</span></div>
-        <div class="conn-stat"><span class="label">MODE</span><span class="value blue">REAL-TIME</span></div>
-        <div class="conn-stat"><span class="label">METHOD</span><span class="value">WEBHOOK / HTTP POST</span></div>
-      </div>
-      <div class="conn-number">03</div>
-    </div>
-  </div>
-</section>
-
+<!-- Assets FIRST -->
 <section class="assets">
-  <div class="section-label">02 — TRADED ASSET CLASSES</div>
+  <div class="section-eyebrow">ASSET CLASSES</div>
+  <div class="section-title">What we trade</div>
   <div class="assets-grid">
     <div class="asset-card">
-      <div class="asset-icon">📈</div>
-      <div class="asset-title">STOCKS</div>
-      <div class="asset-desc">Individual equities traded on major US exchanges. Systematic long and short strategies driven by quantitative signals.</div>
+      <div class="asset-icon-wrap">📈</div>
+      <div class="asset-title">Stocks</div>
+      <div class="asset-desc">Individual equities on major US exchanges. Systematic long and short strategies driven by quantitative signals.</div>
       <div class="asset-tags">
         <span class="asset-tag">NYSE</span>
         <span class="asset-tag">NASDAQ</span>
         <span class="asset-tag">S&amp;P 500</span>
-        <span class="asset-tag">MAGNIFICENT 7</span>
+        <span class="asset-tag">Magnificent 7</span>
       </div>
     </div>
     <div class="asset-card">
-      <div class="asset-icon">🗂️</div>
+      <div class="asset-icon-wrap">🗂️</div>
       <div class="asset-title">ETFs</div>
-      <div class="asset-desc">Exchange-traded funds providing broad market exposure and sector-specific positioning with high liquidity.</div>
+      <div class="asset-desc">Exchange-traded funds providing broad market and sector-specific exposure with institutional-grade liquidity.</div>
       <div class="asset-tags">
         <span class="asset-tag">SPY</span>
         <span class="asset-tag">QQQ</span>
-        <span class="asset-tag">SECTOR ETFs</span>
-        <span class="asset-tag">THEMATIC</span>
+        <span class="asset-tag">Sector ETFs</span>
+        <span class="asset-tag">Thematic</span>
       </div>
     </div>
     <div class="asset-card">
-      <div class="asset-icon">₿</div>
-      <div class="asset-title">CRYPTO</div>
-      <div class="asset-desc">Digital assets operating 24/7. Fully automated strategies capitalizing on round-the-clock market opportunities.</div>
+      <div class="asset-icon-wrap">₿</div>
+      <div class="asset-title">Crypto</div>
+      <div class="asset-desc">Digital assets operating around the clock. Automated strategies capitalizing on 24/7 market opportunities.</div>
       <div class="asset-tags">
         <span class="asset-tag">BTC</span>
         <span class="asset-tag">ETH</span>
-        <span class="asset-tag">ALTCOINS</span>
+        <span class="asset-tag">Altcoins</span>
         <span class="asset-tag">24/7</span>
       </div>
     </div>
   </div>
 </section>
 
-<section class="arch">
-  <div class="section-label">03 — EXECUTION ARCHITECTURE</div>
-  <div class="arch-flow">
-    <div class="arch-node"><div class="node-title">SIGNAL SOURCE</div><div class="node-sub">QUANT SIGNALS</div></div>
-    <div class="arch-arrow"><span>WEBHOOK</span></div>
-    <div class="arch-node"><div class="node-title">AI ENGINE</div><div class="node-sub">ORDER ROUTER</div></div>
-    <div class="arch-arrow"><span>NATIVE API</span></div>
-    <div class="arch-node"><div class="node-title">GATEWAY</div><div class="node-sub">BROKER BRIDGE</div></div>
-    <div class="arch-arrow"><span>EXECUTION</span></div>
-    <div class="arch-node"><div class="node-title">MAIN BROKER</div><div class="node-sub">LIVE EXECUTION</div></div>
-  </div>
-  <div class="arch-flow">
-    <div class="arch-node" style="opacity:.3"><div class="node-title">SIGNAL SOURCE</div><div class="node-sub">QUANT SIGNALS</div></div>
-    <div class="arch-arrow"><span>WEBHOOK</span></div>
-    <div class="arch-node"><div class="node-title">AI ENGINE</div><div class="node-sub">ORDER ROUTER</div></div>
-    <div class="arch-arrow"><span>REST API</span></div>
-    <div class="arch-node" style="border-color:var(--gold);opacity:.6"><div class="node-title" style="color:var(--gold)">REST API</div><div class="node-sub">OAUTH 2.0</div></div>
-    <div class="arch-arrow"><span>EXECUTION</span></div>
-    <div class="arch-node" style="opacity:.5"><div class="node-title">BACKUP BROKER</div><div class="node-sub">LIVE EXECUTION</div></div>
+<!-- Connections SECOND -->
+<section class="connections">
+  <div class="section-eyebrow">INFRASTRUCTURE</div>
+  <div class="section-title">Broker connections</div>
+  <div class="conn-grid">
+    <div class="conn-card">
+      <div class="conn-badge connected"><span class="dot-sm"></span>Connected</div>
+      <div class="conn-broker">Main Broker</div>
+      <div class="conn-desc">PRIMARY EXECUTION VENUE</div>
+      <div class="conn-stats">
+        <div class="conn-stat"><span class="label">Status</span><span class="value green">Live</span></div>
+        <div class="conn-stat"><span class="label">Mode</span><span class="value gold">Live Trading</span></div>
+        <div class="conn-stat"><span class="label">Protocol</span><span class="value">Native API / TCP</span></div>
+      </div>
+      <div class="conn-number">01</div>
+    </div>
+    <div class="conn-card">
+      <div class="conn-badge pending"><span class="dot-sm"></span>Pending</div>
+      <div class="conn-broker">Backup Broker</div>
+      <div class="conn-desc">SECONDARY EXECUTION VENUE</div>
+      <div class="conn-stats">
+        <div class="conn-stat"><span class="label">Status</span><span class="value gold">Pending activation</span></div>
+        <div class="conn-stat"><span class="label">Mode</span><span class="value gold">Live Trading</span></div>
+        <div class="conn-stat"><span class="label">Protocol</span><span class="value">REST API / OAuth 2.0</span></div>
+      </div>
+      <div class="conn-number">02</div>
+    </div>
+    <div class="conn-card">
+      <div class="conn-badge active"><span class="dot-sm"></span>Active</div>
+      <div class="conn-broker">Signal Source</div>
+      <div class="conn-desc">QUANTITATIVE SIGNAL PLATFORM</div>
+      <div class="conn-stats">
+        <div class="conn-stat"><span class="label">Status</span><span class="value blue">Real-time</span></div>
+        <div class="conn-stat"><span class="label">Mode</span><span class="value blue">Continuous</span></div>
+        <div class="conn-stat"><span class="label">Method</span><span class="value">Webhook / HTTP POST</span></div>
+      </div>
+      <div class="conn-number">03</div>
+    </div>
   </div>
 </section>
 
+<!-- Architecture THIRD -->
+<section class="arch">
+  <div class="section-eyebrow">SYSTEM DESIGN</div>
+  <div class="section-title">Execution architecture</div>
+  <div class="arch-flows">
+    <div class="arch-flow">
+      <div class="arch-node"><div class="node-title">Signal Source</div><div class="node-sub">Quant signals</div></div>
+      <div class="arch-arrow"><span>Webhook</span></div>
+      <div class="arch-node"><div class="node-title">AI Engine</div><div class="node-sub">Order router</div></div>
+      <div class="arch-arrow"><span>Native API</span></div>
+      <div class="arch-node"><div class="node-title">Gateway</div><div class="node-sub">Broker bridge</div></div>
+      <div class="arch-arrow"><span>Execution</span></div>
+      <div class="arch-node"><div class="node-title">Main Broker</div><div class="node-sub">Live execution</div></div>
+    </div>
+    <div class="arch-flow">
+      <div class="arch-node" style="opacity:.22"><div class="node-title">Signal Source</div><div class="node-sub">Quant signals</div></div>
+      <div class="arch-arrow"><span>Webhook</span></div>
+      <div class="arch-node"><div class="node-title">AI Engine</div><div class="node-sub">Order router</div></div>
+      <div class="arch-arrow"><span>REST API</span></div>
+      <div class="arch-node" style="border-color:rgba(200,160,64,.4);opacity:.55"><div class="node-title" style="color:var(--gold)">REST API</div><div class="node-sub">OAuth 2.0</div></div>
+      <div class="arch-arrow"><span>Execution</span></div>
+      <div class="arch-node" style="opacity:.4"><div class="node-title">Backup Broker</div><div class="node-sub">Live execution</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
 <footer>
-  <div class="footer-left">© 2026 ZENTINEL — AI-POWERED TRADING AGENT</div>
-  <div class="footer-right">AUTONOMOUS INFRASTRUCTURE · HETZNER CLOUD · GERMANY</div>
+  <div class="footer-left">© 2026 Zentinel — AI-Powered Trading Agent</div>
+  <div class="footer-right">Autonomous infrastructure · Hetzner Cloud · Germany</div>
 </footer>
 
 <script>
-  // Clock
   function updateClock() {
     const n = new Date(), p = v => String(v).padStart(2,'0');
     document.getElementById('clock').textContent =
@@ -287,39 +334,7 @@
   }
   setInterval(updateClock, 1000);
   updateClock();
-
-  // Ticker — Finnhub free API (no CORS issues)
-  const SYMBOLS = ['QQQ','SPY','AAPL','MSFT','NVDA','GOOGL','AMZN','META','TSLA'];
-  const API_KEY = 'd0ej1i9r01qgsf3p5eu0d0ej1i9r01qgsf3p5eug'; // free public demo key
-
-  async function fetchQuote(symbol) {
-    const r = await fetch(
-      'https://finnhub.io/api/v1/quote?symbol='+symbol+'&token='+API_KEY
-    );
-    const d = await r.json();
-    if (!d.c) throw new Error('no data');
-    return { symbol, price: d.c, change: d.dp };
-  }
-
-  async function buildTicker() {
-    try {
-      const results = await Promise.allSettled(SYMBOLS.map(fetchQuote));
-      const quotes  = results.filter(r => r.status === 'fulfilled').map(r => r.value);
-      if (!quotes.length) return;
-      const items = [...quotes, ...quotes].map(q => {
-        const up = q.change >= 0, sign = up ? '+' : '';
-        return '<div class="ticker-item">'
-          + '<span class="ticker-sym">'+q.symbol+'</span>'
-          + '<span class="ticker-price">$'+q.price.toFixed(2)+'</span>'
-          + '<span class="ticker-chg '+(up?'up':'down')+'">'+sign+q.change.toFixed(2)+'%</span>'
-          + '</div>';
-      }).join('');
-      document.getElementById('ticker-inner').innerHTML = items;
-    } catch(e) { console.warn('Ticker error:', e); }
-  }
-
-  buildTicker();
-  setInterval(buildTicker, 5 * 60 * 1000);
 </script>
 </body>
 </html>
+
